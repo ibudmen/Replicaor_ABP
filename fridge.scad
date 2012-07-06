@@ -26,7 +26,7 @@ fan_screw_r = 1.5;
 cooler_width= 68;
 cooler_height =18;
 
-d= 0.1;
+d= 0.05;
 
 //MAIN
 
@@ -47,8 +47,8 @@ roundsidedCube(base_width,base_width,4,base_round);
 translate([0,0,1]){
 pegs();
 }
-translate([-cooler_width/2,-cooler_width/2,0]){
-cube([cooler_width,cooler_width,10]);
+translate([-cooler_width/2,-cooler_width/2,-d]){
+#cube([cooler_width,cooler_width,10]);
 }
 
 }
@@ -88,7 +88,7 @@ translate([0,0,fan_case_height+cooler_height+fan_lip]){
 
 translate([fan_width/2-10,fan_width/2+20,fan_indent+10])
 rotate(a= 90, v= [1,0,0])
-#cylinder(r=4, h = 20 );
+cylinder(r=4, h = 20 );
 
 	}
 
@@ -104,13 +104,13 @@ module base(){
 	difference(){
 		roundsidedCube(base_width,base_width,Base_height,base_round);
 		translate([0,0,-d]){
-			cylinder(r=base_center_hole_r, h = Base_height +2d);
+			cylinder(r=base_center_hole_r, h = Base_height +2*d);
 		}
 
 		hull(){
 			cylinder(r=base_center_hole_r, h = Base_height +d);
 		}
-		translate([0,0,5]){
+		translate([0,0,5+d]){
 	      		 vents(0,10,Base_height-5,base_grill_width,18);
 		}
 screws(Base_height);
@@ -139,7 +139,7 @@ module screws(h1){
 
 
 module pegs(){
-translate([0,0,-d]){
+translate([0,0,0]){
 translate([(-base_width/2)+peg_inset,(-base_width/2)+peg_inset,0]){
 	cylinder(h=peg_length+2*d, r =peg_r );
 }
