@@ -13,17 +13,18 @@ Base_height = base_grill_height+base_grill_lip;
 
 peg_r = 3;
 peg_length = 3;
-peg_inset = 7;
+peg_inset = 9;
 
 fan_case_height = 10;
-fan_width = 59;
+fan_width = 61;
 fan_indent = 10;
 fan_lip= 5;
 fan_r = 5;
 fan_screw_inset= 5;;
 fan_screw_r = 1.5;
 
-cooler_width= 68;
+cooler_width= 70;
+cooler_length= 71;
 cooler_height =18;
 
 d= 0.05;
@@ -33,9 +34,9 @@ d= 0.05;
 
 
 translate([100,0,0]){
-base();
+//base();
 }
-translate([200,0,0]){
+translate([95,0,0]){
 fancase();
 }
 top();
@@ -57,7 +58,13 @@ translate([-cooler_width/2,-cooler_width/2,-d]){
 
 module fancase(){
 translate([0,0,fan_case_height+cooler_height+fan_lip]){
+
+difference(){
  pegs();
+#cube([cooler_width,cooler_length,3*(peg_length+d)],center =true);
+
+}
+
 }
 	difference(){
 		roundsidedCube(base_width,base_width,fan_case_height+cooler_height+fan_lip,base_round);
@@ -76,14 +83,14 @@ translate([0,0,fan_case_height+cooler_height+fan_lip]){
 		
 		pegs();
 
-		translate([-cooler_width/2,-cooler_width/2,fan_case_height+fan_lip]){
-			cube([cooler_width,cooler_width,cooler_height+d]);
+		translate([-cooler_width/2,-cooler_length/2,fan_case_height+fan_lip]){
+			cube([cooler_width,cooler_length,cooler_height+d]);
 		}
 		translate([0,0,fan_case_height+fan_lip]){
 			vents(-2,2,cooler_height,base_grill_width,18);
 		}
 		translate([-fan_width/2,cooler_width/2-d-11,fan_case_height+fan_lip-fan_indent]){
-			cube([fan_width,15+d,cooler_height+fan_indent+d]);
+			cube([fan_width,18+d,cooler_height+fan_indent+d]);
 		}
 
 translate([fan_width/2-10,fan_width/2+20,fan_indent+10])
