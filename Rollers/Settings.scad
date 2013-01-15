@@ -34,11 +34,21 @@ d = 0.01;
 
 ClipSticksize = 5;
 PlateThickness = 5;
+
+//lips to keep the belt in
+TopLip = 5;
+UpperLip = 5;
+LowerLip = 5;
+BottomLip = 5;
+
+
 UpperRollerProjection  = 40;
 UpperRollerRadius = 10;
 
 LowerRollerProjection = 20;
 LowerRollerRadius = 5;
+
+UpperRollerBearingCutoutRadius = 5;
 
 
 // Calculated
