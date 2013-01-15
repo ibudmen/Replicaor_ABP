@@ -29,27 +29,34 @@ RearPlugHeight = 5;
 RearPlugVOffset = 1;
 
 // Options
-d = 0.01;
+d = 0.1;
 
 
-ClipSticksize = 5;
-PlateThickness = 5;
+ClipSticksize = 3;
+PlateThickness = 8;
+
+SlideGap = 6;
 
 //lips to keep the belt in
-TopLip = 5;
-UpperLip = 5;
-LowerLip = 5;
-BottomLip = 5;
+Lip = 3;
+TopLip = 500;
+UpperLip = 500;
+LowerLip = 500;
+BottomLip = 500;
 
+
+RollerCore = 2;
+RollerClearance = 0.5;
+RollerLength = PlateDepth - 2*RollerClearance;
 
 UpperRollerProjection  = 40;
-UpperRollerRadius = 10;
+UpperRollerRadius = 8;
 
 LowerRollerProjection = 20;
-LowerRollerRadius = 5;
+LowerRollerRadius = 6;
 
-UpperRollerBearingCutoutRadius = 5;
-
+UpperRollerBearingCutoutRadius = 3;
+LowerRollerBearingCutoutRadius = 3;
 
 // Calculated
 
