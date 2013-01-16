@@ -8,7 +8,8 @@ use <Rig.scad>;
 use <Plates.scad>;
 use <Rollers.scad>;
 
-color("DarkSlateGray") rig();
+rig();
+
 c_FrontRightPlate();
 c_RearRightPlate();
 c_FrontLeftPlate();
@@ -49,15 +50,43 @@ module c_RearLeftPlate(){
 	}
 }
 
-translate(v = [PlateWidth/2 +UpperRollerProjection-UpperRollerRadius+Lip ,RollerLength/2,-UpperRollerRadius])
-rotate(a = [90,0,0]){
-	color("CornflowerBlue") UpperRoller();
+translate(v = [PlateWidth/2 +UpperRollerProjection-UpperRollerRadius+Lip ,RollerLength/2,-UpperRollerRadius]){
+	rotate(a = [90,0,0]){
+		color("CornflowerBlue") UpperRoller();
+	}
 }
 
-translate(v = [
-PlateWidth/2 +LowerRollerProjection-LowerRollerRadius+Lip,
-RollerLength/2,
--ArmVOffset-ArmHeight-ClipSticksize+LowerRollerRadius])
-rotate(a = [90,0,0]){
-	color("CornflowerBlue") LowerRoller();
+translate(v = [PlateWidth/2 +LowerRollerProjection-LowerRollerRadius+Lip,RollerLength/2,-ArmVOffset-ArmHeight-ClipSticksize+LowerRollerRadius]){
+	rotate(a = [90,0,0]){
+		color("CornflowerBlue") LowerRoller();
+	}
 }
+
+translate(v = [-(PlateWidth/2 +UpperRollerProjection-UpperRollerRadius+Lip ),RollerLength/2,-UpperRollerRadius]){
+	rotate(a = [90,0,0]){
+		color("CornflowerBlue") UpperRoller();
+	}
+}
+
+translate(v = [-(PlateWidth/2 +LowerRollerProjection-LowerRollerRadius+Lip),RollerLength/2,-ArmVOffset-ArmHeight-ClipSticksize+LowerRollerRadius]){
+	rotate(a = [90,0,0]){
+		color("CornflowerBlue") LowerRoller();
+	}
+}
+
+translate(v = [PlateWidth/2 +UpperRollerProjection-UpperRollerRadius+Lip ,RollerLength/2+RollerClearance+PlateThickness,-UpperRollerRadius]){
+	rotate(a = [90,0,0]){
+		color("LightSeaGreen") CoreRod();
+	}
+}
+
+translate(v = [PlateWidth/2 +LowerRollerProjection-LowerRollerRadius+Lip,RollerLength/2+RollerClearance+PlateThickness,-ArmVOffset-ArmHeight-ClipSticksize+LowerRollerRadius]){
+	rotate(a = [90,0,0]){
+		color("LightSeaGreen") CoreRod();
+	}
+}
+
+
+
+
+

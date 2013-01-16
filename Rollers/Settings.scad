@@ -2,31 +2,41 @@
 
 // Mesurements ACTUAL
 
-PlateWidth = 200;
-PlateDepth = 150;
-PlateHeight = 8;
+PlateWidth = 228;
+PlateDepth = 145;
+PlateHeight = 5;
 
-ArmWidth = 15;
-ArmHeight = 15;
-ArmForwardProjection = 20;
+ArmWidth = 20;
+ArmHeight = 24;
+ArmForwardProjection = 25;
 ArmRearProjection = 50;
-ArmVOffset = 30;
+ArmVOffset = 15;
 
-BaseWidth = 100;
+BaseWidth = 129;
 BaseHeight = 5;
 BaseForwardProjection = 10;
 BaseRearProjection = 10;
-BaseVOffset = 35;
+BaseVOffset = 20;
 
 BaseDeflectorLength = 20;
 BaseDeflectorAngle = 45;
 
-ScrewsWidthOutset = 5;
-ScrewsDepthOutset = 5;
+ScrewsWidthOutset = 35;
+ScrewsDepthOutset = 35;
+ScrewsHeadRadius = 10;
+ScrewsHeadHeight = 2;
+ScrewsHeadProtrusion = 5;
+ScrewsShaftRadius = 2;
+ScrewsHeadCutoutRadius = 2;
+
 
 RearPlugWidth = 10;
 RearPlugHeight = 5;
 RearPlugVOffset = 1;
+
+
+
+
 
 // Options
 d = 0.1;
