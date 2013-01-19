@@ -12,29 +12,26 @@ LowerRoller();
 CoreRod();
 
 module UpperRoller(){
-	difference(){	
-		translate(v = [0,0,-d]){
-			cylinder(h = RollerLength+2*d, r =  UpperRollerRadius);
-		}
-		translate(v = [-RollerCore/2,-RollerCore/2, - 2*d]){
-			cube(size = [RollerCore,RollerCore,RollerLength+4*d]);
-		}
-	}
+	HollowCylinder(UpperRollerRadius, RollerLength, RollerCore);
 }
 
 module LowerRoller(){
-	difference(){	
-		translate(v = [0,0,-d]){
-			cylinder(h = RollerLength+2*d, r =  LowerRollerRadius);
-		}
-		translate(v = [-RollerCore/2,-RollerCore/2, - 2*d]){
-			cube(size = [RollerCore,RollerCore,RollerLength+4*d]);
-		}
-	}
+	HollowCylinder(LowerRollerRadius, RollerLength, RollerCore);
 }
 
 module CoreRod(){
 	translate(v = [-RollerCore/2,-RollerCore/2,0]){
 		cube(size = [RollerCore,RollerCore,RollerLength+2*RollerClearance+2*PlateThickness+40]);
+	}
+}
+
+module HollowCylinder(r,h,c){
+	difference(){	
+		translate(v = [0,0,-d]){
+			cylinder(h = h+2*d, r =  r);
+		}
+		translate(v = [-c/2,-c/2, - 2*d]){
+			cube(size = [c,c,h+4*d]);
+		}
 	}
 }

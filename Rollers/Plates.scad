@@ -7,6 +7,24 @@ FrontRightPlate();
 //FrontLeftPlate();
 //RearLeftPlate();
 
+
+module TensionCurve(Radius,Depth){
+	union(){
+		difference(){
+			translate(v=[0,0,]){
+				color("red") cylinder(h =Depth ,r =TensionerOffsetRadius+Radius);
+			}
+			translate(v=[0,0,-d])
+				cylinder(h =Depth+2*d ,r =TensionerOffsetRadius-Radius);	
+		
+			translate( v = [-(TensionerOffsetRadius+Radius),-(TensionerOffsetRadius+Radius),-d])
+				cube(size = [TensionerOffsetRadius+Radius,2*(TensionerOffsetRadius+Radius),Depth+2*d]);
+		}
+		translate(v=[0,TensionerOffsetRadius,0])
+			cylinder(h =Depth ,r =Radius);	
+	}
+}
+
 module FrontRightPlate(){
 	RightPlate();
 }
@@ -30,10 +48,12 @@ module RearLeftPlate(){
 module RightPlate(){
 	difference(){
 		GenericPlate();
-		translate(v = [50,-SlideGap/2-20,-d]){
-			color("red") cube(size = [100,SlideGap,PlateThickness+2*d]);
-			translate(v = [0,SlideGap/2,0]){
-				cylinder(h = PlateThickness+2*d,r = SlideGap/2);
+		translate(v=[LowerRollerPlateX,LowerRollerPlateY,-d]){
+			rotate(a = TensionerAngle, v=[0,0,1] ){
+				TensionCurve(TensionerBearingRadius, PlateThickness +2*d );
+				translate(v=[0,0,PlateThickness-TensionerInset])
+					hull()
+						TensionCurve(TensionerBearingRadius+TensionerBearingExtention , TensionerInset+2*d);
 			}
 		}
 	}
@@ -46,55 +66,45 @@ module LeftPlate(){
 }
 
 module GenericPlate(){
-difference(){
-union(){
-hull(){
-	translate(v = [0,-(ArmVOffset+ArmHeight+Lip+(Lip-ClipSticksize)),0]){
-		color("red") cube(size = [
-ClipSticksize+ArmWidth+PlateArmOverhang,
-ArmHeight+ArmVOffset+2*Lip+(Lip-ClipSticksize),
+	difference(){
+		union(){
+			color("blue") hull(){
+				//main block
+				translate(v = [-ClipSticksize,-(ArmVOffset+ArmHeight),0]){
+					color("red") cube(size = [ClipSticksize+ArmWidth+PlateArmOverhang,
+ArmHeight+ArmVOffset+Lip,
 PlateThickness]);
+				}
+				//magic lower block
+				translate(v = [-ClipSticksize,-(ArmVOffset+ArmHeight+Lip+ClipSticksize),0]){
+					//color("red") cube(size = [ClipSticksize+ArmWidth+PlateArmOverhang,1,PlateThickness]);
+				}
+				//top curve
+				translate(v = [UpperRollerPlateX+Lip,UpperRollerPlateY,0]){
+					cylinder(h= PlateThickness ,r = UpperRollerRadius+Lip); 
+				}
+				//lower curve
+				 translate(v = [LowerRollerPlateX+Lip,LowerRollerPlateY,0]){
+					cylinder(h= PlateThickness ,r = LowerRollerRadius+Lip); 
+				}
+			}
+		}
+		// Arm Hole
+		translate(v = [0,-(ArmVOffset+ArmHeight)-d,-d]){
+			cube(size = [ArmWidth,ArmHeight+d,PlateThickness+2*d]);
+		}
+		//base hole
+		translate(v = [-ClipSticksize-d,-BaseVOffset-BaseHeight-ArmHeight,-d]){
+			cube(size = [ClipSticksize+ArmWidth+2*d,BaseHeight+ArmHeight,PlateThickness+2*d]);
+		}
+		//upper bearing hole
+		translate(v = [UpperRollerPlateX,UpperRollerPlateY,-d]){
+			cylinder(h= PlateThickness+2*d ,r = UpperRollerBearingCutoutRadius);
+		}
+		//lower bearing hole
+		translate(v = [LowerRollerPlateX,LowerRollerPlateY,-d]){
+			cylinder(h= PlateThickness+2*d ,r = LowerRollerBearingCutoutRadius);
+		}
 	}
-
-	translate(v = [0,-(ArmVOffset+ArmHeight+Lip+ClipSticksize),0]){
-		color("red") cube(size = [ClipSticksize+ArmWidth+PlateArmOverhang,1,PlateThickness]);
-	}
-	
-	translate(v = [ClipSticksize+ArmWidth+PlateArmOverhang+UpperRollerProjection-UpperRollerRadius+Lip,-UpperRollerRadius,0]){
-		cylinder(h= PlateThickness ,r = UpperRollerRadius+Lip); 
-	}
-	
-	 translate(v = [
-ClipSticksize+ArmWidth+PlateArmOverhang+LowerRollerProjection-LowerRollerRadius+Lip,
--(ArmVOffset+ArmHeight+ClipSticksize)+LowerRollerRadius,
-0]){
-		cylinder(h= PlateThickness ,r = LowerRollerRadius+Lip); 
-	}
-
-}
-}
-
-translate(v = [ClipSticksize,-ArmVOffset-ArmHeight,-d]){
-	cube(size = [ArmWidth,ArmHeight,PlateThickness+2*d]);
-}
-
-translate(v = [0,-BaseVOffset-BaseHeight,-d]){
-	cube(size = [ClipSticksize,BaseHeight,PlateThickness+2*d]);
-}
-
-translate(v = [ClipSticksize+ArmWidth+PlateArmOverhang+UpperRollerProjection-UpperRollerRadius+Lip,-UpperRollerRadius,-d]){
-	cylinder(h= PlateThickness+2*d ,r = UpperRollerBearingCutoutRadius);
-}
-
-translate(v = [
-ClipSticksize+ArmWidth+PlateArmOverhang+LowerRollerProjection-LowerRollerRadius+Lip,
--(ArmVOffset+ArmHeight+ClipSticksize)+LowerRollerRadius,
--d]){
-	cylinder(h= PlateThickness+2*d ,r = LowerRollerBearingCutoutRadius);
-}
-
-}
-
-
 }//end module
 

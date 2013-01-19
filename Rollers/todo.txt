@@ -1,0 +1,22 @@
+if you wish to work on a part put your name after it.
+
+
+
+
+bearing: create a module that takes inner radius, outer radius and hub and lip     thickness and makes a bearing.() clip together.
+
+
+cogs: all 4 main rollers need to turn in time, use involute_gears
+    a 3rd hole/spindle will be needed to connect them.
+
+
+tensioner: create a system to tension the belt,
+    * ARTHUR
+
+top frame:
+
+undercarrage
+
+calibration cogs
+
+fastening system

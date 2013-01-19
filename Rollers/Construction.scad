@@ -7,6 +7,8 @@ include <Settings.scad>;
 use <Rig.scad>;
 use <Plates.scad>;
 use <Rollers.scad>;
+use <Undercarriage.scad>;
+
 
 rig();
 
@@ -16,10 +18,10 @@ c_FrontLeftPlate();
 c_RearLeftPlate();
 
 
-
+Undercarriage();
 
 module c_FrontRightPlate(){
-	translate(v=[BaseWidth/2 -ClipSticksize ,-PlateDepth/2 ,0]){
+	translate(v=[BaseWidth/2  ,-PlateDepth/2 ,0]){
 		rotate(a = [90,0,0]){
 			color("blue") FrontRightPlate();
 		}
@@ -27,7 +29,7 @@ module c_FrontRightPlate(){
 }
 
 module c_RearRightPlate(){
-	translate(v=[BaseWidth/2 -ClipSticksize ,PlateDepth/2 ,0]){
+	translate(v=[BaseWidth/2 ,PlateDepth/2 ,0]){
 		rotate(a = [-90,0,0]){
 			color("blue") RearRightPlate();
 		}
@@ -35,7 +37,7 @@ module c_RearRightPlate(){
 }
 
 module c_FrontLeftPlate(){
-	translate(v=[-BaseWidth/2 +ClipSticksize ,-PlateDepth/2 ,0]){
+	translate(v=[-BaseWidth/2 ,-PlateDepth/2 ,0]){
 		rotate(a = [90,0,0]){
 			color("blue") FrontLeftPlate();
 		}
@@ -43,44 +45,44 @@ module c_FrontLeftPlate(){
 }
 
 module c_RearLeftPlate(){
-	translate(v=[-BaseWidth/2 +ClipSticksize ,PlateDepth/2 ,0]){
+	translate(v=[-BaseWidth/2 ,PlateDepth/2 ,0]){
 		rotate(a = [-90,0,0]){
 			color("blue") RearLeftPlate();
 		}
 	}
 }
 
-translate(v = [PlateWidth/2 +UpperRollerProjection-UpperRollerRadius+Lip ,RollerLength/2,-UpperRollerRadius]){
+translate(v = [PlateX +UpperRollerPlateX ,RollerLength/2,UpperRollerPlateY]){
 	rotate(a = [90,0,0]){
 		color("CornflowerBlue") UpperRoller();
 	}
 }
 
-translate(v = [PlateWidth/2 +LowerRollerProjection-LowerRollerRadius+Lip,RollerLength/2,-ArmVOffset-ArmHeight-ClipSticksize+LowerRollerRadius]){
+translate(v = [PlateX +LowerRollerPlateX,RollerLength/2,LowerRollerPlateY]){
 	rotate(a = [90,0,0]){
 		color("CornflowerBlue") LowerRoller();
 	}
 }
 
-translate(v = [-(PlateWidth/2 +UpperRollerProjection-UpperRollerRadius+Lip ),RollerLength/2,-UpperRollerRadius]){
+translate(v = [-(PlateX +UpperRollerPlateX) ,RollerLength/2,UpperRollerPlateY]){
 	rotate(a = [90,0,0]){
 		color("CornflowerBlue") UpperRoller();
 	}
 }
 
-translate(v = [-(PlateWidth/2 +LowerRollerProjection-LowerRollerRadius+Lip),RollerLength/2,-ArmVOffset-ArmHeight-ClipSticksize+LowerRollerRadius]){
+translate(v = [-(PlateX +LowerRollerPlateX),RollerLength/2,LowerRollerPlateY]){
 	rotate(a = [90,0,0]){
 		color("CornflowerBlue") LowerRoller();
 	}
 }
 
-translate(v = [PlateWidth/2 +UpperRollerProjection-UpperRollerRadius+Lip ,RollerLength/2+RollerClearance+PlateThickness,-UpperRollerRadius]){
+translate(v = [PlateX +UpperRollerPlateX ,RollerLength/2,UpperRollerPlateY]){
 	rotate(a = [90,0,0]){
 		color("LightSeaGreen") CoreRod();
 	}
 }
 
-translate(v = [PlateWidth/2 +LowerRollerProjection-LowerRollerRadius+Lip,RollerLength/2+RollerClearance+PlateThickness,-ArmVOffset-ArmHeight-ClipSticksize+LowerRollerRadius]){
+translate(v =[PlateX +LowerRollerPlateX,RollerLength/2,LowerRollerPlateY]){
 	rotate(a = [90,0,0]){
 		color("LightSeaGreen") CoreRod();
 	}

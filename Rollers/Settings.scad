@@ -39,13 +39,24 @@ RearPlugVOffset = 1;
 
 
 // Options
-d = 0.1;
+// ****************************************************************************************************
 
+d = 0.1;   //Delta
 
 ClipSticksize = 3;
 PlateThickness = 8;
 
-SlideGap = 6;
+
+
+TensionerBearingRadius = 2;
+TensionerOffsetRadius = 15;
+TensionerAngle = 45;
+TensionerBearingExtention = 3;
+TensionerInset = 2;
+
+
+
+
 
 //lips to keep the belt in
 Lip = 3;
@@ -69,6 +80,19 @@ UpperRollerBearingCutoutRadius = 3;
 LowerRollerBearingCutoutRadius = 3;
 
 // Calculated
+// ************************************************************************************************************
+PlateX = BaseWidth/2;
 
-
+RollerLength = PlateDepth - 2*RollerClearance;
 PlateArmOverhang = PlateWidth/2 - BaseWidth/2  - ArmWidth; 
+
+UpperRollerPlateX = ArmWidth+PlateArmOverhang+UpperRollerProjection-UpperRollerRadius;
+UpperRollerPlateY = -UpperRollerRadius; 
+
+
+LowerRollerPlateX = ArmWidth+PlateArmOverhang+LowerRollerProjection-LowerRollerRadius;
+LowerRollerPlateY = -(ArmVOffset+ArmHeight)+LowerRollerRadius;
+
+
+
+
