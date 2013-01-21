@@ -1,6 +1,7 @@
 // Roller Project Part #1 Front Bracket
 
 include <Settings.scad>;
+use <Connector.scad>;
 
 FrontRightPlate();
 //RearRightPlate();
@@ -70,9 +71,9 @@ module GenericPlate(){
 		union(){
 			color("blue") hull(){
 				//main block
-				translate(v = [-ClipSticksize,-(ArmVOffset+ArmHeight),0]){
+				translate(v = [-ClipSticksize,-(ArmVOffset+ArmHeight)-BottomLip,0]){
 					color("red") cube(size = [ClipSticksize+ArmWidth+PlateArmOverhang,
-ArmHeight+ArmVOffset+Lip,
+ArmHeight+ArmVOffset+Lip+BottomLip,
 PlateThickness]);
 				}
 				//magic lower block
@@ -85,7 +86,7 @@ PlateThickness]);
 				}
 				//lower curve
 				 translate(v = [LowerRollerPlateX+Lip,LowerRollerPlateY,0]){
-					cylinder(h= PlateThickness ,r = LowerRollerRadius+Lip); 
+					cylinder(h= PlateThickness ,r = LowerRollerRadius+BottomLip); 
 				}
 			}
 		}
@@ -105,6 +106,15 @@ PlateThickness]);
 		translate(v = [LowerRollerPlateX,LowerRollerPlateY,-d]){
 			cylinder(h= PlateThickness+2*d ,r = LowerRollerBearingCutoutRadius);
 		}
+
+		//top clip
+		translate(v = [-ClipSticksize-d, -ArmVOffset+MidPlateOverlapOffset,PlateThickness/2])
+			ClipHole(Thickness= PlateThickness/2+d);
+
+		translate(v= [ArmWidth,-(ArmVOffset+ArmHeight+BottomLip+d),-d])
+			cube(size = [LowerPlateCrossover,BottomLip+d,PlateThickness+2*d]);
+
+
 	}
 }//end module
 

@@ -1,7 +1,5 @@
 // Mesurements Of Platform Actual & Global Settings
-
 // Mesurements ACTUAL
-
 PlateWidth = 228;
 PlateDepth = 145;
 PlateHeight = 5;
@@ -29,24 +27,17 @@ ScrewsHeadProtrusion = 5;
 ScrewsShaftRadius = 2;
 ScrewsHeadCutoutRadius = 2;
 
-
 RearPlugWidth = 10;
 RearPlugHeight = 5;
 RearPlugVOffset = 1;
-
-
-
-
 
 // Options
 // ****************************************************************************************************
 
 d = 0.1;   //Delta
 
-ClipSticksize = 3;
-PlateThickness = 8;
-
-
+ClipSticksize = 8;
+PlateThickness = 5;
 
 TensionerBearingRadius = 2;
 TensionerOffsetRadius = 15;
@@ -54,17 +45,17 @@ TensionerAngle = 45;
 TensionerBearingExtention = 3;
 TensionerInset = 2;
 
-
-
-
-
 //lips to keep the belt in
 Lip = 3;
-TopLip = 500;
-UpperLip = 500;
-LowerLip = 500;
-BottomLip = 500;
+//TopLip = 500;
+BottomLip = 5;
 
+MidPlateOverlap = 20;
+MidPlateOverlapHeight = 10;
+MidPlateOverlapOffset = 5;
+ClipHoleSize = 5;
+
+LowerPlateCrossover = 15;
 
 RollerCore = 2;
 RollerClearance = 0.5;
@@ -88,7 +79,6 @@ PlateArmOverhang = PlateWidth/2 - BaseWidth/2  - ArmWidth;
 
 UpperRollerPlateX = ArmWidth+PlateArmOverhang+UpperRollerProjection-UpperRollerRadius;
 UpperRollerPlateY = -UpperRollerRadius; 
-
 
 LowerRollerPlateX = ArmWidth+PlateArmOverhang+LowerRollerProjection-LowerRollerRadius;
 LowerRollerPlateY = -(ArmVOffset+ArmHeight)+LowerRollerRadius;

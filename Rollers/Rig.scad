@@ -24,7 +24,7 @@ translate( v= [BaseWidth/2,-PlateDepth/2-ArmForwardProjection,-ArmVOffset-ArmHei
 
 //base
 translate( v= [-BaseWidth/2,-PlateDepth/2-BaseForwardProjection,-BaseVOffset-BaseHeight]){
-	color("DimGray") cube (size=[BaseWidth,PlateDepth+BaseForwardProjection+BaseRearProjection,BaseHeight]);
+	color("Gainsboro") cube (size=[BaseWidth,PlateDepth+BaseForwardProjection+BaseRearProjection,BaseHeight]);
 }
 
 translate(v= [ScrewsWidthOutset,ScrewsDepthOutset,-(BaseVOffset+BaseHeight+ScrewsHeadProtrusion)])
