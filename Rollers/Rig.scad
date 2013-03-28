@@ -27,6 +27,8 @@ translate( v= [-BaseWidth/2,-PlateDepth/2-BaseForwardProjection,-BaseVOffset-Bas
 	color("Gainsboro") cube (size=[BaseWidth,PlateDepth+BaseForwardProjection+BaseRearProjection,BaseHeight]);
 }
 
+color("Gainsboro")RigLogoPlate();
+
 translate(v= [ScrewsWidthOutset,ScrewsDepthOutset,-(BaseVOffset+BaseHeight+ScrewsHeadProtrusion)])
 color("SlateGray") RigScrew();
 
@@ -38,7 +40,10 @@ color("SlateGray") RigScrew();
 
 translate(v= [-ScrewsWidthOutset,-ScrewsDepthOutset,-(BaseVOffset+BaseHeight+ScrewsHeadProtrusion)])
 color("SlateGray") RigScrew();
+
+
 }
+
 
 
 module RigScrew(){
@@ -48,3 +53,16 @@ module RigScrew(){
 		cylinder(h=BaseVOffset+BaseHeight+ScrewsHeadProtrusion-d, r=ScrewsShaftRadius );
 	}
 }
+
+
+
+module RigLogoPlate(){
+translate( v= [0,-PlateDepth/2-BaseForwardProjection,-BaseVOffset])
+rotate(v= [1,0,0], a=BaseDeflectorAngle )
+	translate(v=[-BaseWidth/2,-BaseDeflectorLength,-BaseHeight])
+		cube(size=[BaseWidth,BaseDeflectorLength,BaseHeight]);
+
+
+}
+
+

@@ -34,7 +34,7 @@ RearPlugVOffset = 1;
 // Options
 // ****************************************************************************************************
 
-d = 0.1;   //Delta
+d = 0.05;   //Delta
 
 ClipSticksize = 8;
 PlateThickness = 5;
@@ -52,13 +52,13 @@ BottomLip = 5;
 
 MidPlateOverlap = 20;
 MidPlateOverlapHeight = 10;
-MidPlateOverlapOffset = 5;
+MidPlateOverlapOffset = 7;
 ClipHoleSize = 5;
 
-LowerPlateCrossover = 15;
+LowerPlateCrossover =10;
 
 RollerCore = 2;
-RollerClearance = 0.5;
+RollerClearance = 2;
 RollerLength = PlateDepth - 2*RollerClearance;
 
 UpperRollerProjection  = 40;
@@ -67,8 +67,11 @@ UpperRollerRadius = 8;
 LowerRollerProjection = 20;
 LowerRollerRadius = 6;
 
-UpperRollerBearingCutoutRadius = 3;
-LowerRollerBearingCutoutRadius = 3;
+RollerBearingCutoutRadius = 3;
+
+IbeamProjection = 15;
+IbeamPlateThikness = 6;
+
 
 // Calculated
 // ************************************************************************************************************

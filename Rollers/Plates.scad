@@ -67,9 +67,10 @@ module LeftPlate(){
 }
 
 module GenericPlate(){
+		union(){
 	difference(){
 		union(){
-			color("blue") hull(){
+			color("DarkSeaGreen") hull(){
 				//main block
 				translate(v = [-ClipSticksize,-(ArmVOffset+ArmHeight)-BottomLip,0]){
 					color("red") cube(size = [ClipSticksize+ArmWidth+PlateArmOverhang,
@@ -90,31 +91,39 @@ PlateThickness]);
 				}
 			}
 		}
-		// Arm Hole
-		translate(v = [0,-(ArmVOffset+ArmHeight)-d,-d]){
-			cube(size = [ArmWidth,ArmHeight+d,PlateThickness+2*d]);
+		union(){
+			// Arm Hole
+				translate(v = [0,-(ArmVOffset+ArmHeight)-d,-d])
+					cube(size = [ArmWidth,ArmHeight+d,PlateThickness+2*d]);
+	
+			//base hole
+			translate(v = [-ClipSticksize-d,-BaseVOffset-BaseHeight-ArmHeight,-d])
+				cube(size = [ClipSticksize+ArmWidth+d,BaseHeight+ArmHeight,PlateThickness+2*d]);
+			
+			translate(v= [ArmWidth-d,-(ArmVOffset+ArmHeight+BottomLip+d),-d])
+				cube(size = [6+d,BottomLip+d,PlateThickness+2*d]);
 		}
-		//base hole
-		translate(v = [-ClipSticksize-d,-BaseVOffset-BaseHeight-ArmHeight,-d]){
-			cube(size = [ClipSticksize+ArmWidth+2*d,BaseHeight+ArmHeight,PlateThickness+2*d]);
-		}
+
 		//upper bearing hole
 		translate(v = [UpperRollerPlateX,UpperRollerPlateY,-d]){
-			cylinder(h= PlateThickness+2*d ,r = UpperRollerBearingCutoutRadius);
+			cylinder(h= PlateThickness+2*d ,r = RollerBearingCutoutRadius);
 		}
 		//lower bearing hole
 		translate(v = [LowerRollerPlateX,LowerRollerPlateY,-d]){
-			cylinder(h= PlateThickness+2*d ,r = LowerRollerBearingCutoutRadius);
+			cylinder(h= PlateThickness+2*d ,r = RollerBearingCutoutRadius);
 		}
 
 		//top clip
-		translate(v = [-ClipSticksize-d, -ArmVOffset+MidPlateOverlapOffset,PlateThickness/2])
-			ClipHole(Thickness= PlateThickness/2+d);
+		translate(v = [-ClipSticksize, -ArmVOffset+MidPlateOverlapOffset,0])
+			ClipHole(Thickness= PlateThickness,Width = 10,Length = 10);
 
-		translate(v= [ArmWidth,-(ArmVOffset+ArmHeight+BottomLip+d),-d])
-			cube(size = [LowerPlateCrossover,BottomLip+d,PlateThickness+2*d]);
+		//bottom clip TODO MATH IS BAD HERE
+		translate(v = [ArmWidth+3,-(ArmVOffset+ArmHeight),0])
+			rotate(v=[0,0,1], a = 90)
+		 		ClipHole(Thickness= PlateThickness,Length = 10);
 
 
+}
 	}
 }//end module
 
