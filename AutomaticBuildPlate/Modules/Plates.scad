@@ -1,6 +1,6 @@
 // Roller Project Part #1 Front Bracket
 
-include <Settings.scad>;
+include <../Settings.scad>;
 use <Connector.scad>;
 
 FrontRightPlate();

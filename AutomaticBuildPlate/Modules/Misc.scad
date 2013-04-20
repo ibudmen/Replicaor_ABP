@@ -1,5 +1,5 @@
 //Misc
-include <Settings.scad>;
+include <../Settings.scad>;
 
 ScrewHole();
 

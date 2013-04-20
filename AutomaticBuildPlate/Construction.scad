@@ -4,13 +4,13 @@
 include <Settings.scad>;
 
 
-use <Rig.scad>;
-use <Plates.scad>;
-use <FrontPlates.scad>;
-use <Rollers.scad>;
-use <Undercarriage.scad>;
-use <LBeam.scad>;
-use <Gears.scad>;
+use <Modules/Rig.scad>;
+use <Modules/Plates.scad>;
+use <Modules/FrontPlates.scad>;
+use <Modules/Rollers.scad>;
+use <Modules/Undercarriage.scad>;
+use <Modules/LBeam.scad>;
+use <Modules/Gears.scad>;
 
 rig();
 

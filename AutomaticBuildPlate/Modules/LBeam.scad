@@ -1,7 +1,7 @@
 // contructed view
 
 
-include <Settings.scad>;
+include <../Settings.scad>;
 
 LBeam();
 

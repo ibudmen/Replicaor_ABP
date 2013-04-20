@@ -1,4 +1,4 @@
-include <Settings.scad>;
+include <../Settings.scad>;
 
 ConnectorDefaults_Length = 8;
 ConnectorDefaults_Width = 6;
