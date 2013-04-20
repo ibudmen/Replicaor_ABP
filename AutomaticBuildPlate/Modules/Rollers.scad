@@ -1,5 +1,6 @@
 // Roller Project Part #1 Front Bracket
-include <Settings.scad>;
+
+include <../Settings.scad>;
 
 
 
@@ -7,11 +8,11 @@ RollersDefaults_Length = RollerLength+2*RollerClearance+2*PlateThickness+40;
 
 
 translate(v = [10+UpperRollerRadius,0,0]){
-	//UpperRoller();
+	UpperRoller();
 }
 
 translate(v = [-10-LowerRollerRadius,0,0]){
-	//LowerRoller();
+	LowerRoller();
 }
 
 //CoreRod();

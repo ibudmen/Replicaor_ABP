@@ -1,7 +1,7 @@
 // Gears
-include <Settings.scad>;
+include <../Settings.scad>;
 use <Rollers.scad>;
-use <involute_gears.scad>;
+use <../Libraries/involute_gears.scad>;
 Spindle();
 
 
