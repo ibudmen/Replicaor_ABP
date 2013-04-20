@@ -1,5 +1,5 @@
 // Front plate
-include <Settings.scad>;
+include <../Settings.scad>;
 use <Connector.scad>;
 
 FrontPlate();
