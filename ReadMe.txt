@@ -1,6 +1,5 @@
 Description of files
 
-
 --Top level--
 -Libraries/-
 All Libaries used such as gears
@@ -16,8 +15,6 @@ Contains all globals( PUT VARIABLES HERE )
 
 -Construction.scad-   
 Contains a constructed representation of the project, do not specify parts in this file. This file is JUST for seeing what it would look like when put together around the replicator HBP.
-
-
 
 
 -Modules/-
@@ -54,6 +51,4 @@ Goes underneath to support worm gears for extending the plate calibration knobs.
 -Libraries-
 involute_gears.scad
 amazing library for all your gear needs: https://github.com/elmom/MCAD
-
-
 
