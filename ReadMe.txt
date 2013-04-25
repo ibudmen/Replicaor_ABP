@@ -1,3 +1,12 @@
+Replicator printable ABP
+=====================
+This Project is dedicated to the constuction of a printable exoskeletal heated automatic build plate for the Makerbot replicator.
+
+This library is licensed under the GPL
+See http://www.gnu.org/licenses/gpl.html or the included file, LICENSE.txt.
+
+## Usage ##
+
 Description of files
 
 --Top level--
