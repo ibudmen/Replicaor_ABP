@@ -12,17 +12,18 @@ use <Modules/Undercarriage.scad>;
 use <Modules/LBeam.scad>;
 use <Modules/Gears.scad>;
 
-rig();
+%rig();
 
-c_FrontRightPlate();
-c_RearRightPlate();
-c_FrontLeftPlate();
-c_RearLeftPlate();
+FrontRightPlate_Placed();
+RearRightPlate_Placed();
+FrontLeftPlate_Placed();
+RearLeftPlate_Placed();
+
 Undercarriage();
 
 c_FrontPlate();
 c_BackPlate();
-c_LowerFrontPlate();
+%c_LowerFrontPlate();
 c_LowerRearPlate();
 
 color("green")LBeam();
@@ -45,7 +46,7 @@ module c_LowerRearPlate(){
 
 module c_FrontPlate(){
 	translate(v = [0,-PlateDepth/2])
-		color("MidnightBlue") FrontPlate();
+		FrontPlate();
 }
 
 module c_BackPlate(){
@@ -53,29 +54,6 @@ module c_BackPlate(){
 		BackPlate();
 }
 
-module c_FrontRightPlate(){
-	translate(v=[BaseWidth/2  ,-PlateDepth/2 ,0]){
-		rotate(a = [90,0,0]) FrontRightPlate();
-	}
-}
-
-module c_RearRightPlate(){
-	translate(v=[BaseWidth/2 ,PlateDepth/2 ,0]){
-		rotate(a = [-90,0,0]) RearRightPlate();
-	}
-}
-
-module c_FrontLeftPlate(){
-	translate(v=[-BaseWidth/2 ,-PlateDepth/2 ,0]){
-		rotate(a = [90,0,0])  FrontLeftPlate();
-	}
-}
-
-module c_RearLeftPlate(){
-	translate(v=[-BaseWidth/2 ,PlateDepth/2 ,0]){
-		rotate(a = [-90,0,0])  RearLeftPlate();
-	}
-}
 
 translate(v = [PlateX +UpperRollerPlateX ,RollerLength/2,UpperRollerPlateY]){
 	rotate(a = [90,0,0]) color("CornflowerBlue") UpperRoller();
@@ -95,7 +73,7 @@ translate(v = [-(PlateX +LowerRollerPlateX),RollerLength/2,LowerRollerPlateY]){
 }
 
 translate(v = [PlateX +UpperRollerPlateX ,0,UpperRollerPlateY]){
-	rotate(a = [90,0,0]) Spindle();
+	rotate(a = [90,0,0]) rotate(v = [0,0,1], a=7)Spindle();
 }
 
 translate(v =[PlateX +LowerRollerPlateX,0,LowerRollerPlateY]){
@@ -108,6 +86,11 @@ translate(v = [-PlateX -UpperRollerPlateX ,0,UpperRollerPlateY]){
 
 translate(v =[-PlateX -LowerRollerPlateX,0,LowerRollerPlateY]){
 	rotate(a = [90,0,0]) Spindle();
+}
+
+translate(v =[PlateX +LowerRollerPlateX-7,0,LowerRollerPlateY+24]){	
+	rotate(a = [90,0,0]) 
+		rotate(v = [0,0,1], a=21) color("grey")Spindle();
 }
 
 

@@ -1,12 +1,15 @@
 // Front plate
 include <../Settings.scad>;
 use <Connector.scad>;
+use <Rig.scad>;
 
-FrontPlate();
-BackPlate();
 
-LowerFrontPlate();
-LowerRearPlate();
+
+%rig();
+translate(v = [0,-PlateDepth/2]) FrontPlate();
+translate(v = [0,PlateDepth/2]) BackPlate();
+translate(v = [0,-PlateDepth/2]) LowerFrontPlate();
+translate(v = [0,PlateDepth/2]) LowerRearPlate();
 
 module LowerRearPlate(){
 	rotate(v =[0,0,1], a= 180)
