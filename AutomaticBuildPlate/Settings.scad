@@ -4,7 +4,7 @@ PlateWidth = 228;
 PlateDepth = 145;
 PlateHeight = 5;
 
-ArmWidth = 20;
+ArmWidth = 22;
 ArmHeight = 24;
 ArmForwardProjection = 25;
 ArmRearProjection = 50;
@@ -14,7 +14,7 @@ BaseWidth = 129;
 BaseHeight = 5;
 BaseForwardProjection = 10;
 BaseRearProjection = 10;
-BaseVOffset = 20;
+BaseVOffset = 18;
 
 BaseDeflectorLength = 20;
 BaseDeflectorAngle = 45;
@@ -31,12 +31,14 @@ RearPlugWidth = 10;
 RearPlugHeight = 5;
 RearPlugVOffset = 1;
 
+// --------------------
 // Options
-// ****************************************************************************************************
+// --------------------
 
-d = 0.08;   //Delta
 
-ClipSticksize = 8;
+d = 0.08; //Delta
+
+PlateInnerHookWidth = 8;
 PlateThickness = 5;
 
 TensionerBearingRadius = 2;
@@ -45,10 +47,9 @@ TensionerAngle = 45;
 TensionerBearingExtention = 3;
 TensionerInset = 2;
 
-//lips to keep the belt in
-Lip = 3;
-//TopLip = 500;
-BottomLip = 5;
+// lips to keep the belt in
+Lip = 3; // general lip
+BottomLip = 5;  // bottom specific lip
 
 MidPlateOverlap = 20;
 MidPlateOverlapHeight = 10;
@@ -72,9 +73,10 @@ RollerBearingCutoutRadius = 3;
 IbeamProjection = 15;
 IbeamPlateThikness = 6;
 
+// ------------------
+// Calculated - allows for shorter descriptions no literals here!
+// ------------------
 
-// Calculated
-// ************************************************************************************************************
 PlateX = BaseWidth/2;
 
 RollerLength = PlateDepth - 2*RollerClearance;
