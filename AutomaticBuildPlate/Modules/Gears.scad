@@ -18,7 +18,7 @@ translate(v = [0,0,(PlateDepth/2)])
 
 
 translate(v = [0,0,-(PlateDepth/2)-PlateThickness-2]) 
-	Washer(r=5,h=2, l = 0.05);
+	color("green") Washer(r=5,h=2, l = 0.05);
 
 translate(v = [0,0,(PlateDepth/2)+PlateThickness]) 
 	Washer(r=5,h=2, l = 0.05);
