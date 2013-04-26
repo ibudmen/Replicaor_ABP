@@ -42,7 +42,7 @@ The top front and back plates
 Gears.scad
 Parts related to gears and splindles for turning rollers
 
-LBeam.scad
+CrossBar.scad
 Internal front back support,, it used to be L shaped.. now it isnt
 
 Misc.scad

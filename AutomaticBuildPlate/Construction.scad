@@ -9,8 +9,9 @@ use <Modules/Plates.scad>;
 use <Modules/FrontPlates.scad>;
 use <Modules/Rollers.scad>;
 use <Modules/Undercarriage.scad>;
-use <Modules/LBeam.scad>;
+use <Modules/CrossBar.scad>;
 use <Modules/Gears.scad>;
+use <Modules/TensionArm.scad>;
 
 %rig();
 
@@ -20,6 +21,10 @@ FrontLeftPlate_Placed();
 RearLeftPlate_Placed();
 
 Undercarriage();
+
+translate(v=[LowerRollerPlateX+BaseWidth/2,-(PlateDepth/2)-PlateThickness+TensionerInset,LowerRollerPlateY])
+rotate(a=[90,0,0])
+TensionArm();
 
 c_FrontPlate();
 c_BackPlate();
@@ -77,7 +82,7 @@ translate(v = [PlateX +UpperRollerPlateX ,0,UpperRollerPlateY]){
 }
 
 translate(v =[PlateX +LowerRollerPlateX,0,LowerRollerPlateY]){
-	rotate(a = [90,0,0]) Spindle();
+	rotate(a = [90,0,0]) %Spindle();
 }
 
 translate(v = [-PlateX -UpperRollerPlateX ,0,UpperRollerPlateY]){
