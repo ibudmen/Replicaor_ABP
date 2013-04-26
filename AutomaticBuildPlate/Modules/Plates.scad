@@ -4,14 +4,26 @@ include <../Settings.scad>;
 use <Connector.scad>;
 use <Rig.scad>;
 
-%rig();
-//FrontRightPlate();
+//Printing();
+//Viewing();
 
-FrontRightPlate_Placed();
-RearRightPlate_Placed();
-FrontLeftPlate_Placed();
-RearLeftPlate_Placed();
+FrontRightPlate();
 
+module Printing(){
+	translate([10,-10,0])FrontRightPlate();
+	//translate([-10,-10,0])FrontLeftPlate();
+	//translate([10,10,0])RearRightPlate();
+	//translate([-10,10,0])RearLeftPlate();
+}
+
+
+module Viewing(){
+	%rig();
+	FrontRightPlate_Placed();
+	RearRightPlate_Placed();
+	FrontLeftPlate_Placed();
+	RearLeftPlate_Placed();
+}
 
 module FrontRightPlate_Placed(){
 	translate(v=[BaseWidth/2  ,-PlateDepth/2 ,0]) 
@@ -63,8 +75,10 @@ module RightPlate(){
 			rotate(a = TensionerAngle, v=[0,0,1] ){
 				TensionCurve(TensionerBearingRadius, PlateThickness +2*d );
 				translate(v=[0,0,PlateThickness-TensionerInset])
-					hull()
+					hull(){
 						TensionCurve(TensionerBearingRadius+TensionerBearingExtention , TensionerInset+2*d);
+						cylinder(h =TensionerInset+d ,r =7);
+						}
 			}
 		}
 	}
@@ -76,66 +90,63 @@ module LeftPlate(){
 	}
 }
 
-module GenericPlate(){
-		union(){
-	difference(){
-	
-		 color("DarkSeaGreen") hull(){
-			//main block
-			translate(v = [-ClipSticksize,-(ArmVOffset+ArmHeight)-BottomLip,0])
-				color("red") cube(size = [
-						ClipSticksize+ArmWidth+PlateArmOverhang,
-						ArmHeight+ArmVOffset+Lip+BottomLip,
-						PlateThickness]);
-			
-			//top roller curve
-			translate(v = [UpperRollerPlateX+Lip,UpperRollerPlateY,0])
-				cylinder(h= PlateThickness ,r = UpperRollerRadius+Lip); 
-			
-			//lower roller curve
-			translate(v = [LowerRollerPlateX+Lip,LowerRollerPlateY,0])
-				cylinder(h= PlateThickness ,r = LowerRollerRadius+BottomLip); 
-
-		}
-	
-	
-		// Arm Hole cut
-			translate(v = [0,-(ArmVOffset+ArmHeight)-d,-2*d])
-				cube(size = [ArmWidth,ArmHeight+d,PlateThickness+4*d]);
-
-		//inner cut hole
-		translate(v = [-ClipSticksize-d,-BaseVOffset-ArmHeight-d,-2*d])
-			cube(size = [ClipSticksize+ArmWidth+d,ArmHeight+d,PlateThickness+4*d]);
-
-		//under hole cut
-		translate(v= [ArmWidth-d,-(ArmVOffset+ArmHeight+BottomLip+d),-2*d])
-			cube(size = [6+d,BottomLip+d,PlateThickness+4*d]);
+module GenericPlate(){	
+difference(){
+	color("DarkSeaGreen") hull(){
+		//main block
+		translate(v = [-PlateInnerHookWidth,-(ArmVOffset+ArmHeight)-BottomLip,0])
+			color("red") cube(size = [
+					PlateInnerHookWidth+ArmWidth+PlateArmOverhang,
+					ArmHeight+ArmVOffset+Lip+BottomLip,
+					PlateThickness]);
 		
-
-		//upper bearing hole
-		translate(v = [UpperRollerPlateX,UpperRollerPlateY,-d])
-		  color("Magenta")
-	           cylinder(h= PlateThickness+2*d ,r = RollerBearingCutoutRadius);
+		//top roller curve
+		translate(v = [UpperRollerPlateX+Lip,UpperRollerPlateY,0])
+			cylinder(h= PlateThickness ,r = UpperRollerRadius+Lip); 
 		
-		//lower bearing hole
-		translate(v = [LowerRollerPlateX,LowerRollerPlateY,-d])
-		  color("DarkViolet")
-		    cylinder(h= PlateThickness+2*d ,r = RollerBearingCutoutRadius);
+		//lower roller curve
+		translate(v = [LowerRollerPlateX+Lip,LowerRollerPlateY,0])
+			cylinder(h= PlateThickness ,r = LowerRollerRadius+BottomLip); 
 
-		//Inner bearing hole
-		translate(v = [LowerRollerPlateX-7,LowerRollerPlateY+22,-d])
-		  color("DarkViolet")
-		    cylinder(h= PlateThickness+2*d ,r = RollerBearingCutoutRadius);		
-
-		//top clip
-		translate(v = [-ClipSticksize, -ArmVOffset+MidPlateOverlapOffset,0])
-			color("green")ClipHole(Thickness= PlateThickness,Width = 10,Length = 10);
-
-		//bottom clip TODO MATH IS BAD HERE
-		translate(v = [ArmWidth+3,-(ArmVOffset+ArmHeight),0])
-			rotate(v=[0,0,1], a = 90)
-		 		color("blue")ClipHole(Thickness= PlateThickness,Length = 10, Width=6+d);
-		}
 	}
+	
+	// Arm Hole cut
+	translate(v = [0,-(ArmVOffset+ArmHeight)-d,-2*d])
+		cube(size = [ArmWidth,ArmHeight+d,PlateThickness+4*d]);
+
+	//inner cut hole
+	translate(v = [-PlateInnerHookWidth-d, -ArmVOffset-ArmHeight-BottomLip-d  ,-2*d])
+	cube(size = [PlateInnerHookWidth+ArmWidth+d,ArmHeight+BottomLip-(BaseVOffset-ArmVOffset)+d,PlateThickness+4*d]);
+
+	//under hole cut
+	translate(v= [-d,-(ArmVOffset+ArmHeight+BottomLip+d),-2*d])
+		cube(size = [ArmWidth+6+d,BottomLip+d,PlateThickness+4*d]);
+	
+
+	//upper bearing hole
+	translate(v = [UpperRollerPlateX,UpperRollerPlateY,-d])
+	  color("Magenta")
+           cylinder(h= PlateThickness+2*d ,r = RollerBearingCutoutRadius);
+	
+	//lower bearing hole
+	translate(v = [LowerRollerPlateX,LowerRollerPlateY,-d])
+	  color("DarkViolet")
+	    cylinder(h= PlateThickness+2*d ,r = RollerBearingCutoutRadius);
+
+	//Inner bearing hole
+	translate(v = [LowerRollerPlateX-7,LowerRollerPlateY+24,-d])
+	  color("DarkViolet")
+	    cylinder(h= PlateThickness+2*d ,r = RollerBearingCutoutRadius);		
+
+	//top clip
+	translate(v = [-PlateInnerHookWidth, -ArmVOffset+MidPlateOverlapOffset,0])
+		color("green")ClipHole(Thickness= PlateThickness,Width = 10,Length = 10);
+
+	//bottom clip TODO MATH IS BAD HERE
+	translate(v = [ArmWidth+3,-(ArmVOffset+ArmHeight),0])
+		rotate(v=[0,0,1], a = 90)
+	 		color("blue")ClipHole(Thickness= PlateThickness,Length = 10, Width=6+d);
+	}
+
 }//end module
 
