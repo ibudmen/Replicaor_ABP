@@ -43,14 +43,14 @@ module BackPlate(){
 
 module FrontPlate(){
 	union(){
-	translate(v=[-(BaseWidth/2)+ClipSticksize,-PlateThickness,-BaseVOffset])
-	color("SteelBlue") cube(size=[BaseWidth-2*ClipSticksize,PlateThickness,BaseVOffset+Lip]);
+	translate(v=[-(BaseWidth/2)+PlateInnerHookWidth,-PlateThickness,-BaseVOffset])
+	color("SteelBlue") cube(size=[BaseWidth-2*PlateInnerHookWidth,PlateThickness,BaseVOffset+Lip]);
 
-	translate(v=[BaseWidth/2-ClipSticksize,0,-ArmVOffset+MidPlateOverlapOffset])
+	translate(v=[BaseWidth/2-PlateInnerHookWidth,0,-ArmVOffset+MidPlateOverlapOffset])
 		rotate(v =[1,0,0], a= 90)
       			color("red") Clip(Thickness=PlateThickness, Width = 10,Length = 10);
 
-	translate(v=[-(BaseWidth/2-ClipSticksize),0,-ArmVOffset+MidPlateOverlapOffset])
+	translate(v=[-(BaseWidth/2-PlateInnerHookWidth),0,-ArmVOffset+MidPlateOverlapOffset])
 		rotate(v =[1,0,0], a= 90)
 			rotate(v =[0,0,1], a= 180)
       			color("green") Clip(Thickness=PlateThickness,Width = 10, Length = 10);
